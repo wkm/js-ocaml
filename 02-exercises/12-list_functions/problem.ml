@@ -16,8 +16,8 @@ open! Base
 
    Let's rewrite [simpler_sum] and [simpler_product] using List.fold *) 
 
-let simpler_sum xs = failwith "For you to implement"
-let simpler_product xs = failwith "For you to implement"
+let simpler_sum xs = List.fold xs ~init:0 ~f:( + )
+let simpler_product xs = List.fold xs ~init:1 ~f:( * )
 
 (** ========== [List.map] ========== **)
 (* [List.map] has the following signature:
@@ -30,7 +30,7 @@ let simpler_product xs = failwith "For you to implement"
    Let's write a function that takes in an int list and transforms it into a
    float list. (Hint: you can cast an int to a float using [Float.of_int].) *)
                        
-let float_of_int xs = failwith "For you to implement"
+let float_of_int xs = List.map xs ~f:Float.of_int
 
 (** ========== [List.init] ========== **)
 (* [List.init] has the following signature:
@@ -38,12 +38,12 @@ let float_of_int xs = failwith "For you to implement"
    {| val init : int -> f:(int -> 'a) -> 'a t |}
 
    [init] allows you to construct new lists.  Given a number representing the
-   number of elements to generate and a function to construct a new element, it
+   number of elements to generate and a functi on to construct a new element, it
    returns a new list
 
    Let's rewrite the [range] function we wrote in problem 9 to use [init].  *)
 
-let range from to_ = failwith "For you to implement"
+let range from to_ = List.init (to_ - from) ~f:(fun x -> from+x)
 
 (** ========== [List.range] ========== **)
 (* Turns out this special case of [List.init] is useful enough that it has it's own 
