@@ -24,10 +24,10 @@ let step t =
     let check_col = t.cur_pos / pixels_per_square in
     let more_marked =
       List.fold_left (List.range 0 t.board.height) ~init:false ~f:(fun acc row ->
-          let color = Board.get t.board { Point.row; col = check_col } in
-          match color with
-          | None -> acc
-          | Some filled_square -> Filled_square.sweep filled_square || acc)
+        let color = Board.get t.board { Point.row; col = check_col } in
+        match color with
+        | None -> acc
+        | Some filled_square -> Filled_square.sweep filled_square || acc)
     in
     if (not more_marked) || t.cur_pos = steps then Board.remove_squares t.board);
   (* advance sweeper *)

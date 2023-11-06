@@ -60,7 +60,7 @@ let drop t =
      board. Make sure to generate a new moving piece.
 
      Note: Depending on your implementation, you might need to check if the game
-     is over here.  *)
+     is over here. *)
   ignore t
 ;;
 
@@ -190,7 +190,7 @@ let%test "Test tick game over..." =
   let t = create ~height:4 ~width:4 ~seconds_per_sweep:4. in
   List.range ~start:`inclusive ~stop:`exclusive 0 9
   |> List.iter ~f:(fun _ ->
-         assert (not !(t.game_over));
-         tick t);
+    assert (not !(t.game_over));
+    tick t);
   !(t.game_over)
 ;;

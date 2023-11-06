@@ -33,12 +33,12 @@ let filled_square_to_rgb (filled_square : Filled_square.t) =
 let draw_part filled_square ~from =
   (* Make things look pretty *)
   (match filled_square.Filled_square.sweeper_state with
-  | To_sweep | Swept ->
-    Point.For_drawing.fill_rect
-      Graphics.(rgb 198 197 196)
-      from
-      (Point.add from part_size)
-  | Unmarked -> ());
+   | To_sweep | Swept ->
+     Point.For_drawing.fill_rect
+       Graphics.(rgb 198 197 196)
+       from
+       (Point.add from part_size)
+   | Unmarked -> ());
   Point.For_drawing.fill_rect
     (filled_square_to_rgb filled_square)
     (Point.add from { Point.col = 2; row = 2 })
@@ -46,8 +46,8 @@ let draw_part filled_square ~from =
 ;;
 
 let draw_moving_piece
-    ~(draw_bottom_left : Point.t)
-    { Moving_piece.top_left; top_right; bottom_left; bottom_right }
+  ~(draw_bottom_left : Point.t)
+  { Moving_piece.top_left; top_right; bottom_left; bottom_right }
   =
   draw_part bottom_left ~from:draw_bottom_left;
   draw_part
@@ -90,8 +90,8 @@ let draw game =
   let dims = dimensions game in
   Point.For_drawing.fill_rect black Point.For_drawing.origin dims;
   List.iter (List.range 0 game.Game.width) ~f:(fun col ->
-      List.iter (List.range 0 game.Game.height) ~f:(fun row ->
-          draw_bg ~from:{ col = part_size.col * col; row = part_size.row * row }));
+    List.iter (List.range 0 game.Game.height) ~f:(fun row ->
+      draw_bg ~from:{ col = part_size.col * col; row = part_size.row * row }));
   draw_moving_piece
     ~draw_bottom_left:
       { Point.col = game.Game.moving_piece_col * part_size.col
@@ -99,13 +99,11 @@ let draw game =
       }
     game.Game.moving_piece;
   List.iter (List.range 0 game.Game.width) ~f:(fun col ->
-      List.iter (List.range 0 game.Game.height) ~f:(fun row ->
-          match Board.get game.Game.board { row; col } with
-          | None -> ()
-          | Some color ->
-            draw_part
-              color
-              ~from:{ col = part_size.col * col; row = part_size.row * row }));
+    List.iter (List.range 0 game.Game.height) ~f:(fun row ->
+      match Board.get game.Game.board { row; col } with
+      | None -> ()
+      | Some color ->
+        draw_part color ~from:{ col = part_size.col * col; row = part_size.row * row }));
   draw_sweeper game;
   Graphics.display_mode true;
   Graphics.synchronize ()

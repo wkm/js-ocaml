@@ -31,7 +31,7 @@ let remove_squares t =
 
      At the end of this function, we should call
      [mark_squares_that_are_sweepable] so that we ensure that we leave the board
-     in a valid state.  *)
+     in a valid state. *)
   ignore (mark_squares_that_are_sweepable t)
 ;;
 
@@ -115,8 +115,8 @@ let%test "Testing mark_squares_that_are_sweepable..." =
 
 let sweep_board t =
   Array.iter t.board ~f:(fun row ->
-      Array.iter row ~f:(fun square ->
-          Option.iter square ~f:(fun square -> ignore (Filled_square.sweep square))))
+    Array.iter row ~f:(fun square ->
+      Option.iter square ~f:(fun square -> ignore (Filled_square.sweep square))))
 ;;
 
 let%test "Testing Remove_squares..." =

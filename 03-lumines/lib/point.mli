@@ -4,7 +4,7 @@ open Base
    to avoid making mistakes about which coordinate is the row and which is the
    column
 
-     We have provided a selection of useful functions, but feel free to add any
+   We have provided a selection of useful functions, but feel free to add any
    others you find you want *)
 type t =
   { col : int
@@ -15,14 +15,14 @@ type t =
 val add : t -> t -> t
 
 (* [compare_by_row] returns:
-   - 0 if the rows are equal 
-   - a positive number if the first is greater than the second 
+   - 0 if the rows are equal
+   - a positive number if the first is greater than the second
    - a negative number if the first is less than  the second *)
 val compare_by_row : t -> t -> int
 
 (* [compare_by_col] returns:
-   - 0 if the cols are equal 
-   - a positive number if the first is greater than the second 
+   - 0 if the cols are equal
+   - a positive number if the first is greater than the second
    - a negative number if the first is less than  the second *)
 val compare_by_col : t -> t -> int
 

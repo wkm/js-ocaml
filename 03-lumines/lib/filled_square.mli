@@ -10,7 +10,7 @@ open Base
    - [Swept] : this means that the sweeper has passed this, square and it is 'deleted'
      it will be actually removed from the board when the sweeper reaches the end of the
 
-     blocks to delete *)
+   blocks to delete *)
 module Sweeper_state : sig
   type t =
     | Unmarked
@@ -22,8 +22,8 @@ end
 
 type t =
   { color : Color.t
-        (* recall from our earlier exercise, by marking this as mutable we can change it in
-     place rather than making a new one every time the state updates *)
+      (* recall from our earlier exercise, by marking this as mutable we can change it in
+         place rather than making a new one every time the state updates *)
   ; mutable sweeper_state : Sweeper_state.t
   }
 
