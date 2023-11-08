@@ -42,7 +42,7 @@ let%expect_test "Testing [Game.create]..." =
 let%expect_test "Testing [Game.create] failure..." =
   let t =
     Or_error.try_with (fun () ->
-        create ~height:1 ~width:2 ~initial_snake_length:3 ~amount_to_grow:3)
+      create ~height:1 ~width:2 ~initial_snake_length:3 ~amount_to_grow:3)
   in
   Stdio.printf !"%{sexp: t Or_error.t}\n%!" t;
   [%expect {| (Error (Failure "unable to create initial apple")) |}]
@@ -51,7 +51,7 @@ let%expect_test "Testing [Game.create] failure..." =
 let%expect_test "Testing [Game.create] failure..." =
   let t =
     Or_error.try_with (fun () ->
-        create ~height:10 ~width:2 ~initial_snake_length:3 ~amount_to_grow:3)
+      create ~height:10 ~width:2 ~initial_snake_length:3 ~amount_to_grow:3)
   in
   Stdio.printf !"%{sexp: t Or_error.t}\n%!" t;
   [%expect {| (Error (Failure "unable to create initial snake")) |}]
