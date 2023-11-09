@@ -11,8 +11,13 @@ let location t = t.location
    locations where the apple cannot be generated, and create a [t] with a random
    location on the board.
 
-   Hint: 
+   Hint:
    - You can generate a random int up to [bound] via [Random.int bound].
-   - You can pick a random element out of a list using [List.random_element_exn list]. 
+   - You can pick a random element out of a list using [List.random_element_exn list].
 *)
-let create ~height ~width ~invalid_locations = failwith "For you to implement"
+let create ~height ~width ~invalid_locations = failwith "TODO"
+(* let invalidLookup = Set.Make((int, int)) in
+   List.iter invalid_locations f:(fun loc ->
+   match loc with
+   | x, y -> (invalidLookup.add x,y)
+   ) *)
