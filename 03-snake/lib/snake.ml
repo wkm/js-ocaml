@@ -13,34 +13,38 @@ type t =
   }
 [@@deriving sexp_of]
 
-(* TODO: Implement [create].
+let create ~length =
+  { direction = Direction.Right
+  ; extensions_remaining = 0
+  ; locations =
+      List.range 0 length
+      |> List.map ~f:(fun x -> { Position.row = 0; Position.col = x })
+      |> List.rev
+  }
+;;
 
-   Note that at the beginning of the game, the snake will not need to grow at all, so
-   [extensions_remaining] should be initialized to 0. *)
-let create ~length = failwith "For you to implement"
+let grow_over_next_steps t by_how_much = { t with extensions_remaining = by_how_much }
+let locations t = t.locations
+let head_location t = List.hd_exn t.locations
+let set_direction t direction = { t with direction }
 
-(* TODO: Implement [grow_over_next_steps].
-
-   Read over the documentation of this function in the mli.
-
-   Notice that this function should not actually grow the snake, but only record that we
-   should grow the snake one block for the next [by_how_much] squares. *)
-let grow_over_next_steps t by_how_much = t
-
-(* TODO: Implement [locations]. *)
-let locations t = failwith "For you to implement"
-
-(* TODO: Implement [head_location]. *)
-let head_location t = { Position.row = 0; col = 0 }
-
-(* TODO: Implement [set_direction]. *)
-let set_direction t direction = t
-
-(* TODO: Implement [step].
-
-   Read over the documentation of this function in the mli.
-
-   [step] should:
-   - move the snake forward one block, growing it and updating [t.locations] if necessary
-   - check for self collisions *)
-let step t = Some t
+let step t =
+  (* move head to 'direction, delete the last item, check for collisions *)
+  let front = head_location t in
+  let next = Direction.next_position t.direction front in
+  let movedFront = List.cons next t.locations in
+  let movedTail =
+    if t.extensions_remaining = 0
+    then (* remove the tail location *)
+      List.take movedFront (List.length movedFront - 1)
+    else movedFront
+  in
+  match List.contains_dup movedTail ~compare:Position.compare with
+  | true -> None
+  | false ->
+    Some
+      { t with
+        locations = movedTail
+      ; extensions_remaining = max 0 t.extensions_remaining - 1
+      }
+;;
