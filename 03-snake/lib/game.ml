@@ -16,12 +16,6 @@ let in_bounds t position =
   0 <= row && row < t.height && 0 <= col && col < t.width
 ;;
 
-(* TODO: Implement [create].
-
-   Make sure that the game returned by [create] is in a valid state. In particular, we
-   should fail with the message "unable to create initial apple" if [Apple.create] is
-   unsuccessful, and "unable to create initial snake" if the initial snake is invalid
-   (i.e. goes off the board). *)
 let create ~height ~width ~initial_snake_length ~amount_to_grow =
   if initial_snake_length > width
   then failwith "unable to create initial snake"
@@ -38,8 +32,11 @@ let snake t = t.snake
 let apple t = t.apple
 let game_state t = t.game_state
 
-(* TODO: Implement [set_direction]. *)
-let set_direction t direction = ()
+let set_direction t direction =
+  let { snake; _ } = t in
+  t.snake <- Snake.set_direction snake direction;
+  ()
+;;
 
 (* TODO: Implement [step].
 
