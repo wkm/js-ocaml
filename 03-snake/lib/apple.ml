@@ -15,9 +15,16 @@ let location t = t.location
    - You can generate a random int up to [bound] via [Random.int bound].
    - You can pick a random element out of a list using [List.random_element_exn list].
 *)
-let create ~height ~width ~invalid_locations = failwith "TODO"
-(* let invalidLookup = Set.Make((int, int)) in
-   List.iter invalid_locations f:(fun loc ->
-   match loc with
-   | x, y -> (invalidLookup.add x,y)
-   ) *)
+let create ~height ~width ~invalid_locations =
+  if height * width <= List.length invalid_locations
+  then None
+  else (
+    let invalid_tbl = Hash_set.of_list (module Position) invalid_locations in
+    let rec loop () =
+      let rrow = Random.int height in
+      let rcol = Random.int width in
+      let loc = { Position.col = rcol; Position.row = rrow } in
+      if not (Hash_set.mem invalid_tbl loc) then Some { location = loc } else loop ()
+    in
+    loop ())
+;;

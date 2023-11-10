@@ -10,8 +10,11 @@ type t =
   }
 [@@deriving sexp_of]
 
-(* TODO: Implement [in_bounds]. *)
-let in_bounds t position = failwith "For you to implement"
+(* [in_bounds] gives [true] if the position is within bounds of the game. *)
+let in_bounds t position = failwith "missing"
+
+(* let { Position.row; col } = position in
+0 <= row && row < t.height && 0 <= col && col < t.width *)
 
 (* TODO: Implement [create].
 
@@ -44,7 +47,7 @@ module For_testing = struct
   let create_apple_force_location_exn ~height ~width ~location =
     let invalid_locations =
       List.init height ~f:(fun row ->
-          List.init width ~f:(fun col -> { Position.row; col }))
+        List.init width ~f:(fun col -> { Position.row; col }))
       |> List.concat
       |> List.filter ~f:(fun pos -> not ([%compare.equal: Position.t] location pos))
     in
@@ -64,11 +67,11 @@ module For_testing = struct
   ;;
 
   let create_game_with_apple_exn
-      ~height
-      ~width
-      ~initial_snake_length
-      ~amount_to_grow
-      ~apple_location
+    ~height
+    ~width
+    ~initial_snake_length
+    ~amount_to_grow
+    ~apple_location
     =
     let t = create ~height ~width ~initial_snake_length ~amount_to_grow in
     create_apple_and_update_game_exn t ~apple_location;
