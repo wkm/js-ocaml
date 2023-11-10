@@ -1,11 +1,12 @@
 open! Base
-open Hashset
+open! Stdio
+open Snake_lib
 
 let%expect_test "Testing [Hashset]..." =
-  let t = Hashset.create () in
-  t.add 2;
-  t.add 3;
-  t.add 4;
-  Stdio.printf !"%{sexp: t}\n%!" t;
-  [%expect {||}]
+  let hs = Hashset.create () in
+  Hashset.add hs 2;
+  Hashset.add hs 3;
+  Hashset.add hs 4;
+  print_s (Hashset.sexp_of_t hs);
+  [%expect {| ((ht ((2 ()) (3 ()) (4 ())))) |}]
 ;;
