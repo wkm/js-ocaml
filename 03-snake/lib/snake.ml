@@ -45,6 +45,6 @@ let step t =
     Some
       { t with
         locations = movedTail
-      ; extensions_remaining = max 0 t.extensions_remaining - 1
+      ; extensions_remaining = max 0 (t.extensions_remaining - 1)
       }
 ;;

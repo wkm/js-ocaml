@@ -132,7 +132,7 @@ let%expect_test "Testing [Game.step] with game winning..." =
   [%expect
     {|
         ((snake
-          ((direction Left) (extensions_remaining 4)
+          ((direction Left) (extensions_remaining 3)
            (locations
             (((col 0) (row 1)) ((col 1) (row 1)) ((col 2) (row 1)) ((col 2) (row 0))
              ((col 1) (row 0))))))

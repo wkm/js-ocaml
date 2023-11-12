@@ -4,9 +4,9 @@ open Snake
 
 let step_n_times t n =
   List.fold (List.range 0 n) ~init:(Some t) ~f:(fun t _ ->
-      match t with
-      | Some t -> step t
-      | None -> failwith "can't call step when previous step returned [None]!")
+    match t with
+    | Some t -> step t
+    | None -> failwith "can't call step when previous step returned [None]!")
 ;;
 
 let%expect_test "Testing [Snake.step]..." =
