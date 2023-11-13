@@ -1,5 +1,6 @@
-(alias
- (name DEFAULT)
- (deps
-  (alias_rec bin)
-  (alias_rec lib)))
+(executable
+ (modes byte exe js)
+ (name main)
+ (preprocess
+  (pps js_of_ocaml-ppx ppx_jane))
+ (modules_without_implementation suggested_frogger))
