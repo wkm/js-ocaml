@@ -3,8 +3,7 @@
     0. The positions of all objects are snapped onto a coarse grid.
     1. The frog  is 1x1
     2. Every car is 1x1
-    3. Every log is 1x1
-*)
+    3. Every log is 1x1 *)
 
 (** The playable area of the screen will be referred to as the [board]. *)
 module Board : sig
@@ -56,8 +55,7 @@ end
 
 module Display_list : sig
   (** The [Display_command] [(image, pos)] represents a command to draw [image]
-      with its leftmost grid point at [pos].
-  *)
+      with its leftmost grid point at [pos]. *)
   module Display_command : sig
     type nonrec t = Image.t * Position.t [@@deriving sexp]
   end

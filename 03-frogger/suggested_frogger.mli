@@ -24,7 +24,7 @@ module Non_frog_character : sig
   val position : t -> Position.t
 
   (** In units of grid-points/tick. Positive values indicate rightward motion,
-     negative values leftward motion. *)
+      negative values leftward motion. *)
   val horizontal_speed : t -> int
 end
 

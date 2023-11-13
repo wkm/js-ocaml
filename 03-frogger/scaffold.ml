@@ -1,10 +1,11 @@
 open Base
- 
+
 module Position = struct
   type t =
     { x : int
     ; y : int
-    } [@@deriving fields, sexp]
+    }
+  [@@deriving fields, sexp]
 
   let create = Fields.create
 end
@@ -15,18 +16,15 @@ module Image = struct
     | Frog_down
     | Frog_left
     | Frog_right
-
     | Car1_left
     | Car1_right
     | Car2_left
     | Car2_right
     | Car3_left
     | Car3_right
-
     | Log1
     | Log2
     | Log3
-
     | Confetti
     | Skull_and_crossbones
   [@@deriving sexp, variants]
@@ -85,6 +83,4 @@ module Board = struct
   ;;
 end
 
-let console_log s =
-  Js_of_ocaml.Firebug.console##log s
-;;
+let console_log s = Js_of_ocaml.Firebug.console##log s
