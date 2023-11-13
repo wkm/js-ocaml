@@ -1,5 +1,5 @@
 (alias
- (name DEAFAULT)
+ (name DEFAULT)
  (deps
   (alias_rec bin)
   (alias_rec lib)))

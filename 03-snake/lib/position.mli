@@ -6,4 +6,4 @@ type t =
   { col : int
   ; row : int
   }
-[@@deriving compare, sexp]
+[@@deriving compare, sexp, hash]
